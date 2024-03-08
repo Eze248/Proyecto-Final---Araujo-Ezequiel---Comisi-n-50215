@@ -1,0 +1,33 @@
+{% extends "aplicacion/index.html" %}
+
+{%block titulo%}
+<h1 class="display-5 fw-bolder text-white mb-2">Transacciones</h1>
+{%endblock titulo%}
+
+{%block boton%}
+<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'transacciones_create' %}">Agregar</a>
+    <a class="btn btn-outline-light btn-lg px-4" href="{% url 'transacciones_s' %}">Buscar</a>
+</div>
+{%endblock boton%}
+
+{%block cuerpo%}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for c in transaccion_list  %}
+        <tr>
+            <td>{{ c.producto }}</td>
+            <td>{{ c.precio }}</td>
+            <td>{{ c.fecha }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{%endblock cuerpo%}
