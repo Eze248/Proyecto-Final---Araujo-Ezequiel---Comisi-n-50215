@@ -19,6 +19,7 @@ class Producto(models.Model):
         return f"{self.nombre}"
 
 class Transaccion(models.Model):
+    numeroDeCliente = models.IntegerField()
     producto = models.CharField(max_length=50)
     precio = models.IntegerField()
     fecha = models.DateField(max_length=50)
