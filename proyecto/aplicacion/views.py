@@ -13,7 +13,7 @@ from .forms import *
 def home(request):
   return render(request, "aplicacion/index.html")
 
-#Clientes
+# ----------------------------------------------Clientes
 @login_required
 def clientes(request):
     return render(request, "aplicacion/clientes.html")
@@ -45,7 +45,7 @@ class ClienteUpdate(LoginRequiredMixin, UpdateView):
 class ClienteDelete(LoginRequiredMixin, DeleteView):
     model = Cliente
     success_url = reverse_lazy("clientes")  
-#Empleados
+# ----------------------------------------------Empleados
 @login_required
 def empleados(request):
     return render(request, "aplicacion/empleados.html")
@@ -77,7 +77,7 @@ class EmpleadoUpdate(LoginRequiredMixin, UpdateView):
 class EmpleadoDelete(LoginRequiredMixin, DeleteView):
     model = Empleado
     success_url = reverse_lazy("empleado")  
-#Productos
+# ----------------------------------------------Productos
 @login_required
 def productos(request):
     return render(request, "aplicacion/productos.html")
@@ -109,7 +109,7 @@ class ProductoUpdate(LoginRequiredMixin, UpdateView):
 class ProductoDelete(LoginRequiredMixin, DeleteView):
     model = Producto
     success_url = reverse_lazy("productos")  
-#Transacciones
+# ----------------------------------------------Transacciones
 @login_required
 def transacciones(request):
     return render(request, "aplicacion/transacciones.html")
@@ -142,7 +142,7 @@ class TransaccionDelete(LoginRequiredMixin, DeleteView):
     model = Transaccion
     success_url = reverse_lazy("transacciones")
 
-#Usuarios
+# ----------------------------------------------Usuarios
 
 def login_request(request):         
     if request.method == "POST":
@@ -170,4 +170,4 @@ def signin(request):
     else: 
         miForm = SigninForm()
 
-    return render(request, "aplicacion/registro.html", {"form": miForm} )  
+    return render(request, "aplicacion/signin.html", {"form": miForm} )  
