@@ -39,5 +39,7 @@ urlpatterns = [
     path('profile/', editProfile, name="profile"),
     path('<int:pk>/password/', CambiarContraseña.as_view(), name="cambiar_contraseña"),
     path('avatar/', addAvatar, name="avatar"),
+    #Otro
+    path('aboutme/', aboutme, name= "aboutme"),
 
 ]

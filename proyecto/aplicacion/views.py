@@ -220,3 +220,8 @@ def addAvatar(request):
         miForm = AvatarForm()
 
     return render(request, "aplicacion/avatar.html", {"form": miForm} )  
+
+# ----------------------------------------------Otros
+
+def aboutme(request):
+    return render(request, "aplicacion/aboutme.html")
