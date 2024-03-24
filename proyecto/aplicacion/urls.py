@@ -36,4 +36,8 @@ urlpatterns = [
     path('login/', login_request, name="login"),
     path('logout/', LogoutView.as_view(template_name="aplicacion/logout.html") , name="logout"),
     path('signin/', signin, name="signin"),
+    path('profile/', editProfile, name="profile"),
+    path('<int:pk>/password/', CambiarContraseña.as_view(), name="cambiar_contraseña"),
+    path('avatar/', addAvatar, name="avatar"),
+
 ]

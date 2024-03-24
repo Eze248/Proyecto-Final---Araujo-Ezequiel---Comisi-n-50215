@@ -151,6 +151,12 @@ def login_request(request):
         user = authenticate(request, username=usuario, password=clave)
         if user is not None:
             login(request, user)
+            try:
+                avatar = Avatar.objects.get(user=request.user.id).imagen.url
+            except:
+                avatar = "/media/avatares/default.png"
+            finally:
+                request.session["avatar"] = avatar
             return render(request, "aplicacion/index.html")
         else:
             return redirect(reverse_lazy('login'))
@@ -170,4 +176,47 @@ def signin(request):
     else: 
         miForm = SigninForm()
 
-    return render(request, "aplicacion/signin.html", {"form": miForm} )  
+    return render(request, "aplicacion/signin.html", {"form": miForm} )
+
+@login_required
+def editProfile(request):
+    usuario = request.user
+    if request.method == "POST":
+        miForm = UserEditForm(request.POST)
+        if miForm.is_valid():
+            user = User.objects.get(username=usuario)
+            user.email = miForm.cleaned_data.get("email")
+            user.first_name = miForm.cleaned_data.get("first_name")
+            user.last_name = miForm.cleaned_data.get("last_name")
+            user.save()
+            return redirect(reverse_lazy('home'))
+    else: 
+        miForm = UserEditForm(instance=usuario)
+
+    return render(request, "aplicacion/editProfile.html", {"form": miForm} )    
+   
+class CambiarContraseña(LoginRequiredMixin, PasswordChangeView):
+    template_name = "aplicacion/contraseña.html"
+    success_url = reverse_lazy("home")
+
+@login_required
+def addAvatar(request):
+    if request.method == "POST":
+        miForm = AvatarForm(request.POST, request.FILES)
+
+        if miForm.is_valid():
+            usuario = User.objects.get(username=request.user)
+            OldAvatar = Avatar.objects.filter(user=usuario)
+            if len(OldAvatar) > 0:
+                for i in range(len(OldAvatar)):
+                    OldAvatar[i].delete()
+            avatar = Avatar(user=usuario,imagen=miForm.cleaned_data["imagen"])
+            avatar.save()
+            imagen = Avatar.objects.get(user=usuario).imagen.url
+            request.session["avatar"] = imagen
+            
+            return redirect(reverse_lazy('home'))
+    else:
+        miForm = AvatarForm()
+
+    return render(request, "aplicacion/avatar.html", {"form": miForm} )  

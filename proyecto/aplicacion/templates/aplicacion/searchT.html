@@ -2,7 +2,7 @@
 
 
 {% block titulo %}
-<h1 class="mb-5">Buscar</h1>
+<h1 class="display-5 fw-bolder text-white mb-2">Buscar</h1>
 {% endblock titulo %}
 
 
@@ -12,7 +12,7 @@
 {%endblock user%}
 <form action="{% url 'transacciones_e' %}" method="get">
     {% csrf_token %}
-    <p>Buscar: <input type="text" name="buscar" id="buscar"></p>
+    <p>Buscar por producto: <input type="text" name="buscar" id="buscar"></p>
     <input type="submit" value="Buscar">
 </form>
 

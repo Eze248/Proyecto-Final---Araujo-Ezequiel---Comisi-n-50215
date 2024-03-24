@@ -1,0 +1,22 @@
+{% extends "aplicacion/index.html" %}
+
+
+{% block titulo %}
+<h1 class="display-5 fw-bolder text-white mb-2">Eliminar Cliente</h1>
+{% endblock titulo %}
+
+
+{% block cuerpo %}
+{%block user%}
+
+{%endblock user%}
+<form action="" method="POST">
+    {% csrf_token %}   
+    <div class="text-center">     
+        <h3>¿ Eliminar ? <p style="color:red">{{ object }}</p> </h3>
+    </div>
+    <div class="text-center">
+        <input type="submit" class="btn btn-danger btn-block" value="Confirmar">
+    </div>
+</form>
+{% endblock cuerpo %}

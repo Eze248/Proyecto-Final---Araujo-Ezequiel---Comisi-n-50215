@@ -26,6 +26,18 @@
         <tr>
             <td>{{ c.nombre }}</td>
             <td>{{ c.numero }}</td>
+            <td>
+                <a
+                  href="{% url 'clientes_u' c.id %}"
+                  class="btn btn-default"
+                  style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-refresh fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                  href="{% url 'clientes_d' c.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
         </tr>
     {% endfor %}
     </tbody>

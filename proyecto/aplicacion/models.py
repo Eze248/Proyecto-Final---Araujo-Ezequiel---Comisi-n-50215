@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=50)
@@ -23,3 +24,10 @@ class Transaccion(models.Model):
     producto = models.CharField(max_length=50)
     precio = models.IntegerField()
     fecha = models.DateField(max_length=50)
+
+class Avatar(models.Model):
+    imagen = models.ImageField(upload_to="avatares")   
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user} {self.imagen}"

@@ -17,6 +17,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>Número de cliente</th>
             <th>Producto</th>
             <th>Precio</th>
             <th>Fecha</th>
@@ -25,9 +26,22 @@
     <tbody>
     {% for c in transaccion_list  %}
         <tr>
+            <td>{{ c.numeroDeCliente }}</td>
             <td>{{ c.producto }}</td>
             <td>{{ c.precio }}</td>
             <td>{{ c.fecha }}</td>
+            <td>
+                <a
+                  href="{% url 'transacciones_u' c.id %}"
+                  class="btn btn-default"
+                  style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-refresh fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                  href="{% url 'transacciones_d' c.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
         </tr>
     {% endfor %}
     </tbody>
