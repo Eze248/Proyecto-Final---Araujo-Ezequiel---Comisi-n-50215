@@ -24,6 +24,8 @@ class Transaccion(models.Model):
     producto = models.CharField(max_length=50)
     precio = models.IntegerField()
     fecha = models.DateField(max_length=50)
+    def __str__(self):
+        return (f"Transacción {self.numeroDeCliente} - {self.producto}")
 
 class Avatar(models.Model):
     imagen = models.ImageField(upload_to="avatares")   
